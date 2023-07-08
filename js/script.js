@@ -1,3 +1,5 @@
+import words from "./words.js";
+
 const wordText = document.querySelector(".word"),
     hintText = document.querySelector(".hint"),
     timeText = document.querySelector(".time b"),
@@ -32,7 +34,8 @@ const shuffle = () => {
 const initGame = () => {
     initTimer(time);
     timeText.innerText = time;
-    let randomObj = words[Math.floor(Math.random() * words.length)];
+    let temp = words.filter(w => w.length > 2 && w.length < 8 && !w.includes(" ") && !w.includes("-"));
+    let randomObj = temp[Math.floor(Math.random() * temp.length)];
     correctWord = randomObj.toLowerCase();
     shuffle();
     hintText.innerHTML = "&nbsp;";
